@@ -1,0 +1,284 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link href="/webpage/css/output.css" rel="stylesheet">
+  <meta name="description" content="">
+
+  <meta property="og:title" content="PCX - Prototypical Concept-based Explanations">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+
+<!--  <link rel="icon" href="/favicon.ico" sizes="any">-->
+<!--  <link rel="icon" href="/icon.svg" type="image/svg+xml">-->
+<!--  <link rel="apple-touch-icon" href="icon.png">-->
+
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+
+<div class="max-w-screen-lg xl:max-w-screen-lg flex mx-auto flex-col p-16 leading-7  text-base">
+  <!-- Add your site or application content here -->
+  <div id="header" class="">
+    <div class="text-3xl font-bold">Prototypical Concept-based Explanation (PCX)</div>
+    <div class="italic font-light">project page of the paper:</div>
+    <div class="font-semibold">Understanding the (Extra-)Ordinary: Validating Deep Model Decisions with Prototypical Concept-based Explanations</div>
+    <div class="italic mb-1 ">Maximilian Dreyer, Reduan Achtibat, Wojciech Samek, Sebastian Lapuschkin</div>
+    <button class="bg-blue-600 text-gray-100 px-2 py-0.5 rounded hover:bg-blue-700" href="https://arxiv.org/pdf/2311.16681.pdf">
+      paper
+    </button>
+    <button class="bg-green-600 text-gray-100 px-2 py-0.5 rounded hover:bg-green-700" href="https://github.com/maxdreyer/pcx">
+      code
+    </button>
+  </div>
+
+  <div id="intro" class="my-8" >
+    <div>
+      The method of PCX introduces concept-based prototypes that summarize the model behavior in condensed fashion,
+      enabling an understanding of model (sub-)strategies.
+      Specifically, with PCX we can
+      <ul class="list-decimal list-inside leading-8 ">
+        <li>
+          (globally) quickly reveal <b>spurious model behavior</b> or <b>data quality issues</b> through prototypes.
+        </li>
+        <li>
+          (globally)  understand model <b>(sub-)strategies in detail</b> by comparing prototypes on the concept level.
+        </li>
+        <li>
+          (glocally) <b>validate</b> model predictions <b>qualitatively</b> by studying deviations to prototypes on the concept level.
+        </li>
+        <li>
+          (glocally) <b>validate</b> model predictions <b>quantitatively</b> by measuring deviations from the expected behavior.
+        </li>
+      </ul>
+
+      As such, PCX is taking important steps towards more objective and applicable XAI.
+    </div>
+
+
+    <div id="intro_img" class="border-4 rounded p-3 my-6 -mx-12 ">
+    <img src="webpage/img/pcx_intro.png">
+    <div class="pt-3  leading-6 text-sm">
+      <b>Fig. 1:</b> (a): A flamingo prediction is based on concepts like “feather”, “red color” and “water”.
+      While recent concept-based XAI methods provide relevance scores, localization heatmaps,
+      and visualizations for each concept, it remains unclear whether such composition of used concepts is expected.
+      (b): Comparing against prototypes enables to understand to what extend concepts are similar (e.g., “feather”),
+      underused (e.g., “red color”), or overused (e.g., “water”).
+      These differences can be quantitatively measured to assess the degree of an outlier prediction.
+      (c): PCX allows to automatically identify outliers, or, alternatively, the closest prototypical prediction strategy.
+      Prototypes are hereby automatically discovered, summarizing the global model behavior in condensed fashion.
+    </div>
+    </div>
+
+    <div class="my-8">
+      <div class="text-2xl font-bold mb-3">What are Prototypes?</div>
+
+      <div>
+        For each data category, one or more prototypes represent a (proto-)typical model prediction strategy.
+        To give an example,
+        regarding the flamingo in Fig. 1,
+        we see prototypes for flamingos standing in water, flamingos in groups, or flamingo heads (Fig. 1c).
+        For each prototype,
+        the model uses characteristic concepts, e.g., 'water', 'feathers' and 'red color' for prototype 1.
+      </div>
+
+      <div id="second_img" class="border-4 rounded p-3 my-6 -mx-12 ">
+        <img src="webpage/img/PCX_0_.png" width="650px" class="mx-auto">
+        <div class="pt-3  leading-6 text-sm ">
+          <b>Fig. 2:</b>
+          In order to compute prototypes,
+          we first compute concept-based explanations for the whole training
+          set of a class we are interested in (here space shuttle class).
+          Secondly,
+          we compute and find prototypes on the resulting distributions by fitting a Gaussian Mixture Model.
+          In this example,
+          we find four prototypes showing space shuttles in different settings (in a hall, landing, ready for take-off, taking off).
+          Each prototype is characterized by specific concepts, as shown in detail later in Fig. 5.
+        </div>
+      </div>
+
+      <div class="my-3">
+        In order to compute prototypes,
+        we first collect concept-based explanations over the training set, as illustrated in Fig. 2.
+        For each sample and model prediction outcome,
+        we leverage the <a href="https://github.com/rachtibat/zennit-crp"
+                           class="px-1 py-1 rounded bg-gray-500 text-gray-100 hover:bg-gray-700">CRP</a>
+        method to compute relevance scores for all concepts (one concept per latent unit/neuron).
+      </div>
+
+      <div class="my-3">
+        Having collected the concept-based explanations,
+        we propose to fit a Gaussian Mixture Model on the resulting distributions for each output class.
+        Then,
+        each Gaussian describes one prototype. In order to visualize a prototype,
+        we usually show the closest samples to a Gaussian's mean in the training set.
+      </div>
+
+    </div>
+    <div class="my-8">
+      <div class="text-2xl font-bold">Revealing Spurious Model Behavior and Data Quality Issues</div>
+    </div>
+
+    PCX provides protoypes for each output category that summarize the model behavior in condensed fashion.
+    When computing prototypes on the training data,
+    PCX prototypes then allow to quickly understand model and data.
+    In the following,
+    we show two examples for a VGG-16 model trained on the <a href="https://www.image-net.org">ImageNet dataset</a> that consists of over one million
+    data points and 1000 object classes.
+
+    <div id="img" class="border-4 rounded p-3 my-6 -mx-12 ">
+      <img src="webpage/img/0.61_478_prototypes.png" width="680px" class="mx-auto">
+      <div class="pt-3  leading-6 text-sm ">
+        <b>Fig. 3: </b> Eight prototypes for the carton class:
+        Prototype 7 reveals that cats and cartons are correlating in the dataset.
+        Further,
+        prototypes 4 and 5 consist of a Chinese lettering watermark that is overlayed in white color over images.
+        We show more examples in the appendix of our paper.
+      </div>
+    </div>
+
+    The first example is depicted in Fig. 3,
+    where eight prototypes for the class 'carton' are shown.
+    For each prototype, we show six example image samples that are most representative of the prototype.
+    Here,
+    prototype 7
+    is special,
+    as it shows cats in cartons, indicating a correlation between cats and cartons.
+    In fact,
+    the most relevant characteristic concept for prototype 7 is related to cat features (shown in the paper).
+    Further,
+    prototypes 4 and 5 reveal a watermark of Chinese lettering (overlayed in white color over the images).
+
+    <div id="img" class="border-4 rounded p-3 my-6 -mx-12 ">
+      <img src="webpage/img/287_prototypes_vgg.png" width="700px" class="mx-auto">
+      <div class="pt-3  leading-6 text-sm ">
+        <b>Fig. 4: </b> Eight prototypes for the lynx and catamount class:
+        Prototype 0 reveals that lynx and fences are correlating in the dataset.
+        Further,
+        prototype 5 depicts Blue Lynx Ragdoll cats that are mistakenly included in the dataset.
+        We show more examples in the appendix of our paper.
+      </div>
+    </div>
+
+    The second example is depicted in Fig. 5,
+    where eight prototypes for the class 'lynx, catamount' are shown.
+    Here,
+    prototype 0
+    is special,
+    as it shows lynxes behind fences, indicating a correlation in the dataset.
+    In fact,
+    the most relevant characteristic concept for prototype 5 is related to the fence (shown in the paper).
+    Further,
+    prototypes 5 stands out by not showing lynxes or catamount cats, but Blue Lynx Ragdoll house cats that are mistakenly
+    included in the dataset.
+    This example underlines the danger of using large datasets that are automatically scraped from the internet.
+    Note,
+    that we provide more such examples in the appendix of our paper.
+
+    <div class="my-8">
+      <div class="text-2xl font-bold">Model Sub-Strategies in Detail</div>
+
+      By looking at the prototype visualizations of PCX prototypes,
+      we get a quick and rough idea of what the model has learned.
+      As our prototypes are based on concept relevance score distributions,
+      we can now dive deeper and study the characteristic concepts of each prototype.
+
+      <div id="img" class="border-4 rounded p-3 my-6 -mx-12 ">
+        <img src="webpage/img/rocket_relmax_vgg.png" width="900px" class="mx-auto">
+        <div class="pt-3  leading-6 text-sm ">
+          <b>Fig. 5:</b> Going to the concept level,
+          we can understand the prototypes (and their differences) in more detail.
+          For the eight prototypes of the space shuttle class, we also show eight characteristic concepts
+          and their respecitve relevance scores (in %).
+          There are, e.g., concepts corresponding to the white-black Orbiter Vehicle (as dominant for prototypes 0, 2 and 7).
+          Further,
+          a concept for dust clouds (concept 428) or low resolution (concept 206) exists.
+
+        </div>
+      </div>
+
+      An example is shown in Fig. 5 for the space shuttle class of the ImageNet dataset.
+      Here,
+      you can find eight PCX prototypes (including the four prototypes of Fig. 2).
+      Additionally,
+      we show the eight overall most relevant concepts for the class prototypes,
+      and the respective relevance scores for each prototype in form of a matrix.
+      In the matrix,
+      each value describes how relevant a concept is (in percent).
+      Going to the concept level,
+      we can now understand the prototypes and their differences in detail.
+      Regarding prototypes 3 and 4 for example,
+      the dust cloud and vertical pen-like form is important.
+      Whereas the fire concept is more important for prototype 3,
+      prototype 4 is more strongly characterized by a 'blurry/pixelated' concept, as the prototype shows more zoomed-in versions
+      of space shuttles.
+
+    </div>
+    <div class="my-8">
+      <div class="text-2xl font-bold">Validating Model Predictions</div>
+
+      Lastly,
+      we want to highlight how PCX allows for more objective explanations that are also practical for model (prediction)
+      validation.
+      Concretely,
+      with PCX,
+      we can understand for single predictions,
+      how (a-)typical they are.
+      On the one hand,
+      PCX allows to study the difference to the expected model behavior qualitatively in terms of concepts.
+      On the other hand,
+      as prototypes are based on Gaussian distributions,
+      the probability density function of a distribution allows for a quantitative likelihood measure.
+      The idea is further illustrated in Fig. 6.
+
+      <div id="img" class="border-4 rounded p-3 my-6 -mx-12 ">
+        <img src="webpage/img/PCX_4.png" width="400px" class="mx-auto">
+        <div class="pt-3  leading-6 text-sm ">
+          <b>Fig. 6:</b>
+          PCX allows for more objective explanations that are practical for model (prediction) validation.
+          Specifically,
+          we can understand for a new prediction how it deviates from the expected (prototype) in terms of concepts.
+          Further,
+          being based on Gaussian Mixture Models, we further can compute quantitatively the likelihood that a prediction
+          belongs to an output category.
+          Detailed examples are provided in the appendix of the paper.
+        </div>
+      </div>
+
+    </div>
+
+    <div class="mt-8">
+      <div class="text-2xl font-bold">Questions?</div>
+
+      Feel free to <a href="https://www.hhi.fraunhofer.de/en/departments/ai/research-groups/explainable-artificial-intelligence.html">reach out</a> when you have questions about our work or want to collaborate!
+    </div>
+
+  </div>
+
+  <div class="border-4 rounded p-3 my-3 -mx-12 ">
+    Want to use PCX for your project? Feel free to cite us:
+    <div class="text-sm pt-3">
+      Dreyer, Maximilian, et al. "Understanding the (Extra-) Ordinary: Validating Deep Model Decisions with Prototypical Concept-based Explanations." arXiv preprint arXiv:2311.16681 (2023).
+    </div>
+    <div class="pt-3 leading-5 text-sm font-mono">
+      @article{dreyer2023understanding, <br />
+      title={Understanding the (Extra-)Ordinary: Validating Deep Model Decisions with Prototypical Concept-based Explanations}, <br />
+      author={Dreyer, Maximilian and Achtibat, Reduan and Samek, Wojciech and Lapuschkin, Sebastian}, <br />
+      journal={arXiv preprint arXiv:2311.16681}, <br />
+      year={2023}
+      }
+    </div>
+  </div>
+
+</div>
+<!--  <script src="js/app.js"></script>-->
+
+</body>
+
+</html>
