@@ -3,4 +3,4 @@ This is the repository for the paper called "Understanding the (Extra-)Ordinary:
 
 Code is coming in February.
 
-Check out our project page **[here](https://link-url-here.org](https://maxdreyer.github.io/pcx/)https://maxdreyer.github.io/pcx/)**.
+Check out our project page **[here](https://maxdreyer.github.io/pcx/)**.
