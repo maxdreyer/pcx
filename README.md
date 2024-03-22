@@ -1,5 +1,5 @@
 <div align="center">
-<img src="static/PCX-logo.png" width="250" alt="PCX Logo" />
+<img src="static/PCX_logo.png" width="350" alt="PCX Logo" />
 <h1>Understanding the (Extra-)Ordinary: Validating Deep Model Decisions with Prototypical Concept-based Explanations</h1>
 <p>
 PyTorch Implementation</p>
