@@ -14,7 +14,7 @@ Check out our project page **[here](https://maxdreyer.github.io/pcx/)**.
 ## Note
 We provide the code for all experiments **[here](https://drive.google.com/file/d/17d3UfYFCBnfqNKcxSCeNbTnrO7amdpzo)**.
 
-However, our aim for this repository is to provide an easy implementation, which we are currently working on.
+However, our aim for **this** repository is to provide an implementation that is as easy as possible, which we are currently working on.
 
 ### Abstract 
 
