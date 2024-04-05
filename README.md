@@ -1,5 +1,5 @@
 <div align="center">
-<img src="static/pcx_logo.png" width="300" alt="PCX Logo" />
+<img src="static/PCX_logo.png" width="300" alt="PCX Logo" />
 <h1>Prototypical Concept-based Explanations (PCX)</h1>
 <p>
 PyTorch Implementation</p>
@@ -9,11 +9,14 @@ PyTorch Implementation</p>
 
 ## Description
 
+This repository contains the code for the paper "**[Understanding the (Extra-)Ordinary: Validating Deep Model Decisions with Prototypical Concept-based Explanations](https://arxiv.org/pdf/2311.16681)**''.
+
 <div align="center">
 <img src="static/pcx_intro.png" width="1000" alt="PCX Logo" />
 </div>
+<i>Credits for images: pexels.com</i>
 
-This repository contains the code for the paper "**[Understanding the (Extra-)Ordinary: Validating Deep Model Decisions with Prototypical Concept-based Explanations](https://arxiv.org/pdf/2311.16681)**''.
+
 
 Check out our project page **[here](https://maxdreyer.github.io/pcx/)**.
 
