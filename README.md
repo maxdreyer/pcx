@@ -1,11 +1,17 @@
 <div align="center">
-<img src="static/PCX_logo.png" width="350" alt="PCX Logo" />
-<h1>Understanding the (Extra-)Ordinary: Validating Deep Model Decisions with Prototypical Concept-based Explanations</h1>
+<img src="static/pcx_logo.png" width="300" alt="PCX Logo" />
+<h1>Prototypical Concept-based Explanations (PCX)</h1>
 <p>
 PyTorch Implementation</p>
 </div>
 
+
+
 ## Description
+
+<div align="center">
+<img src="static/pcx_intro.png" width="1000" alt="PCX Logo" />
+</div>
 
 This repository contains the code for the paper "**[Understanding the (Extra-)Ordinary: Validating Deep Model Decisions with Prototypical Concept-based Explanations](https://arxiv.org/pdf/2311.16681)**''.
 
