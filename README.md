@@ -35,3 +35,15 @@ Ensuring both transparency and safety is critical when deploying Deep Neural Net
 ## Full Code for Paper
 We provide the code for all experiments in the paper **[here](https://drive.google.com/file/d/17d3UfYFCBnfqNKcxSCeNbTnrO7amdpzo)**.
 
+## Citation
+
+Please feel free to cite our work, if used in your research:
+
+```bibtex
+@article{dreyer2023understanding,
+  title={Understanding the (Extra-)Ordinary: Validating Deep Model Decisions with Prototypical Concept-based Explanations},
+  author={Dreyer, Maximilian and Achtibat, Reduan and Samek, Wojciech and Lapuschkin, Sebastian},
+  journal={arXiv preprint arXiv:2311.16681},
+  year={2023}
+}
+```
