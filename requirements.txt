@@ -1,0 +1,11 @@
+torch==2.3.1
+torchvision
+zennit-crp
+pandas
+opencv-python
+scikit-learn
+h5py
+umap-learn
+timm
+jupyter
+scikit-image
