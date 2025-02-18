@@ -71,10 +71,13 @@ We provide the code for all experiments in the paper **[here](https://drive.goog
 Please feel free to cite our work, if used in your research:
 
 ```bibtex
-@article{dreyer2023understanding,
-  title={Understanding the (Extra-)Ordinary: Validating Deep Model Decisions with Prototypical Concept-based Explanations},
+@inproceedings{dreyer2024understanding,
   author={Dreyer, Maximilian and Achtibat, Reduan and Samek, Wojciech and Lapuschkin, Sebastian},
-  journal={arXiv preprint arXiv:2311.16681},
-  year={2023}
-}
+  booktitle={2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops (CVPRW)}, 
+  title={Understanding the (Extra-)Ordinary: Validating Deep Model Decisions with Prototypical Concept-based Explanations}, 
+  year={2024},
+  volume={},
+  number={},
+  pages={3491-3501},
+  doi={10.1109/CVPRW63382.2024.00353}}
 ```
