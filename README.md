@@ -9,7 +9,7 @@ PyTorch Implementation</p>
 
 ## Description
 
-This repository contains the code for the paper "**[Understanding the (Extra-)Ordinary: Validating Deep Model Decisions with Prototypical Concept-based Explanations](https://arxiv.org/pdf/2311.16681)**''.
+This repository contains the code for the paper "**[Understanding the (Extra-)Ordinary: Validating Deep Model Decisions with Prototypical Concept-based Explanations](https://openaccess.thecvf.com/content/CVPR2024W/SAIAD/papers/Dreyer_Understanding_the_Extra-Ordinary_Validating_Deep_Model_Decisions_with_Prototypical_Concept-based_CVPRW_2024_paper.pdf)**''.
 
 <div align="center">
 <img src="static/pcx_intro.png" width="1000" alt="PCX Logo" />
